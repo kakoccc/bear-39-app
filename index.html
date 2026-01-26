@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bear Fitness</title>
+    <title>Спортивный клуб Медведь</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,16 +12,34 @@
 
 <body>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal-overlay" onclick="closeImageModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <div class="app-container">
 
         <!-- Header -->
-        <header class="header">
-            <div class="brand">BEAR<span>FITNESS</span></div>
+        <header class="header new-header">
+            <div class="logo-container">
+                <!-- LOGO PLACEHOLDER -->
+                <img src="images/logo_placeholder.png" onerror="this.src='https://placehold.co/100x100?text=LOGO'"
+                    alt="Logo" class="club-logo">
+            </div>
+            <div class="header-text">
+                <div class="brand">СПОРТИВНЫЙ КЛУБ <br><span>МЕДВЕДЬ</span></div>
+            </div>
         </header>
 
-        <!-- TITLE TAB -->
+        <!-- Dynamic Content Tabs -->
+
+        <!-- HOME TAB -->
         <div id="home" class="tab-content active">
-            <div class="card">
+            <div class="" style="margin-bottom: 20px;">
+                <h1 style="font-size: 24px; line-height: 1.1; margin-bottom: 8px; color: white;">ПЕРВЫЙ СПОРТИВНЫЙ КЛУБ
+                    В ЧЕРНЯХОВСКЕ</h1>
+                <h2 style="font-size: 18px; color: var(--color-primary); margin-bottom: 12px;">Для детей и Взрослых</h2>
                 <p style="font-size: 14px; line-height: 1.5; color: var(--color-text-muted);">
                     Премиальный фитнес-клуб с современным оборудованием, профессиональными тренерами и уникальной
                     атмосферой энергии.
@@ -37,8 +55,8 @@
                 </div>
                 <div class="bento-item">
                     <i class="fa-solid fa-clock"></i>
-                    <h4>24/7</h4>
-                    <p>Круглосуточно</p>
+                    <h4>07:00 - 23:00</h4>
+                    <p>Удобное время</p>
                 </div>
                 <div class="bento-item">
                     <i class="fa-solid fa-shower"></i>
@@ -52,50 +70,16 @@
                 </div>
             </div>
 
-            <div class="section-title" style="margin-top: 24px;">Акции</div>
-            <div class="card"
-                style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: black;">
-                <h3 style="margin-bottom: 4px;">СТАРТ ЗА 0₽</h3>
-                <p style="font-size: 13px; opacity: 0.9;">При покупке карты на год — первый месяц бесплатно.</p>
-            </div>
-        </div>
-
-        <!-- SCHEDULE TAB -->
-        <div id="schedule" class="tab-content">
-            <div class="section-title">Расписание на сегодня</div>
-
-            <div class="card">
-                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
-                    <span style="font-weight:700; color: var(--color-primary);">18:00</span>
-                    <span style="font-size:12px; opacity:0.7;">60 мин</span>
+            <div class="section-title" style="margin-top: 24px;">Общее расписание</div>
+            <div class="card" onclick="openImageModal('images/schedule_general.jpg')"
+                style="padding: 0; overflow: hidden; height: 150px; position: relative; cursor: pointer;">
+                <img src="images/schedule_general.jpg" onerror="this.src='https://placehold.co/600x400?text=РАСПИСАНИЕ'"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                <div
+                    style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); padding: 10px; text-align: center;">
+                    <span style="color: white; font-weight: 700; text-transform: uppercase;">Нажмите чтобы
+                        открыть</span>
                 </div>
-                <h3 style="margin-bottom: 4px;">CrossFit Intro</h3>
-                <p style="font-size: 13px; color: var(--color-text-muted);">Иван Петров • Зал функционального тренинга
-                </p>
-                <button class="btn btn-outline"
-                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
-            </div>
-
-            <div class="card">
-                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
-                    <span style="font-weight:700; color: var(--color-primary);">19:30</span>
-                    <span style="font-size:12px; opacity:0.7;">90 мин</span>
-                </div>
-                <h3 style="margin-bottom: 4px;">Yoga Flow</h3>
-                <p style="font-size: 13px; color: var(--color-text-muted);">Анна Сидорова • Зал йоги</p>
-                <button class="btn btn-outline"
-                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
-            </div>
-
-            <div class="card">
-                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
-                    <span style="font-weight:700; color: var(--color-primary);">21:00</span>
-                    <span style="font-size:12px; opacity:0.7;">45 мин</span>
-                </div>
-                <h3 style="margin-bottom: 4px;">Fight Club</h3>
-                <p style="font-size: 13px; color: var(--color-text-muted);">Сергей Васильев • Зона единоборств</p>
-                <button class="btn btn-outline"
-                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
             </div>
         </div>
 
@@ -103,44 +87,72 @@
         <div id="trainers" class="tab-content">
             <div class="section-title">Наши тренеры</div>
 
+            <!-- Trainer 1 -->
             <div class="card trainer-card">
-                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2670&auto=format&fit=crop"
+                <img src="images/trainer_1.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
                     class="trainer-img">
                 <div class="trainer-info">
                     <div class="trainer-name">Иван Петров</div>
                     <div class="trainer-sport">CrossFit</div>
                     <div class="trainer-actions">
                         <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
-                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
+                        <button class="btn btn-primary"
+                            onclick="openImageModal('images/trainer_1_schedule.jpg')">Расписание</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Trainer 2 -->
             <div class="card trainer-card">
-                <img src="https://images.unsplash.com/photo-1609899537878-39d4a74869e9?q=80&w=2576&auto=format&fit=crop"
+                <img src="images/trainer_2.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
                     class="trainer-img">
                 <div class="trainer-info">
                     <div class="trainer-name">Анна Сидорова</div>
                     <div class="trainer-sport">Yoga & Pilates</div>
                     <div class="trainer-actions">
                         <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
-                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
+                        <button class="btn btn-primary"
+                            onclick="openImageModal('images/trainer_2_schedule.jpg')">Расписание</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Trainer 3 -->
             <div class="card trainer-card">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
+                <img src="images/trainer_3.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
                     class="trainer-img">
                 <div class="trainer-info">
                     <div class="trainer-name">Сергей Васильев</div>
                     <div class="trainer-sport">Boxing</div>
                     <div class="trainer-actions">
                         <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
-                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
+                        <button class="btn btn-primary"
+                            onclick="openImageModal('images/trainer_3_schedule.jpg')">Расписание</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Generate 9 more placeholders for total 12 -->
+            <!-- Placeholder Trainers 4-12 -->
+            <script>
+                // Simple script to render remaining 9 trainer placeholders to save space in this file
+                // In production you would hardcode them or fetch from JSON
+                for (let i = 4; i <= 12; i++) {
+                    document.write(`
+                    <div class="card trainer-card">
+                        <img src="images/trainer_${i}.jpg" onerror="this.src='https://placehold.co/100x100?text=TRENER ${i}'" class="trainer-img">
+                        <div class="trainer-info">
+                            <div class="trainer-name">Тренер ${i}</div>
+                            <div class="trainer-sport">Спорт</div>
+                            <div class="trainer-actions">
+                                <a href="#" class="btn btn-outline">Telegram</a>
+                                <button class="btn btn-primary" onclick="openImageModal('images/trainer_${i}_schedule.jpg')">Расписание</button>
+                            </div>
+                        </div>
+                    </div>
+                    `);
+                }
+            </script>
         </div>
 
         <!-- PAYMENT TAB -->
@@ -175,19 +187,19 @@
             </div>
 
             <div class="card">
-                <h3 style="margin-bottom: 16px;">Bear Fitness Club</h3>
+                <h3 style="margin-bottom: 16px;">Спортивный клуб Медведь</h3>
 
                 <div class="contact-row">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>г. Москва, ул. Спортивная, д. 10</span>
+                    <span>г. Черняховск, ул. Спортивная, д. 1</span>
                 </div>
                 <div class="contact-row">
                     <i class="fa-solid fa-clock"></i>
-                    <span>Ежедневно: 24 часа</span>
+                    <span>Ежедневно: 07:00 - 23:00</span>
                 </div>
                 <div class="contact-row">
                     <i class="fa-solid fa-envelope"></i>
-                    <span>info@bearfitness.ru</span>
+                    <span>info@bearsport.ru</span>
                 </div>
 
                 <a href="tel:+79990000000" class="btn btn-primary" style="margin-top: 12px;">
@@ -198,15 +210,11 @@
 
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation (NO SCHEDULE TAB) -->
     <nav class="nav-bar">
         <div class="nav-item active" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
             <span>Главная</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('schedule')">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>Распис.</span>
         </div>
         <div class="nav-item" onclick="switchTab('trainers')">
             <i class="fa-solid fa-users"></i>
