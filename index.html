@@ -24,8 +24,7 @@
         <header class="header new-header">
             <div class="logo-container">
                 <!-- LOGO PLACEHOLDER -->
-                <img src="images/logo_placeholder.png" onerror="this.src='https://placehold.co/100x100?text=LOGO'"
-                    alt="Logo" class="club-logo">
+                <img src="images/logo.jpg" alt="Logo" class="club-logo">
             </div>
             <div class="header-text">
                 <div class="brand">СПОРТИВНЫЙ КЛУБ <br><span>МЕДВЕДЬ</span></div>
@@ -73,8 +72,7 @@
             <div class="section-title" style="margin-top: 24px;">Общее расписание</div>
             <div class="card" onclick="openImageModal('images/schedule_general.jpg')"
                 style="padding: 0; overflow: hidden; height: 150px; position: relative; cursor: pointer;">
-                <img src="images/schedule_general.jpg" onerror="this.src='https://placehold.co/600x400?text=РАСПИСАНИЕ'"
-                    style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/sambo.jpg" style="width: 100%; height: 100%; object-fit: cover;">
                 <div
                     style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); padding: 10px; text-align: center;">
                     <span style="color: white; font-weight: 700; text-transform: uppercase;">Нажмите чтобы
@@ -89,70 +87,18 @@
 
             <!-- Trainer 1 -->
             <div class="card trainer-card">
-                <img src="images/trainer_1.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
-                    class="trainer-img">
+                <img src="images/trainer_1.jpg" class="trainer-img" alt="Trainer 1">
                 <div class="trainer-info">
-                    <div class="trainer-name">Иван Петров</div>
-                    <div class="trainer-sport">CrossFit</div>
+                    <div class="trainer-name">Александр Ковалёв</div>
+                    <div class="trainer-sport">Самбо для детей</div>
                     <div class="trainer-actions">
-                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
+                        <a href="https://t.me/aleksandr_kovalev_coach" target="_blank" class="btn btn-outline">
+                            Telegram</a>
                         <button class="btn btn-primary"
                             onclick="openImageModal('images/trainer_1_schedule.jpg')">Расписание</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Trainer 2 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_2.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
-                    class="trainer-img">
-                <div class="trainer-info">
-                    <div class="trainer-name">Анна Сидорова</div>
-                    <div class="trainer-sport">Yoga & Pilates</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
-                        <button class="btn btn-primary"
-                            onclick="openImageModal('images/trainer_2_schedule.jpg')">Расписание</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trainer 3 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_3.jpg" onerror="this.src='https://placehold.co/100x100?text=PHOTO'"
-                    class="trainer-img">
-                <div class="trainer-info">
-                    <div class="trainer-name">Сергей Васильев</div>
-                    <div class="trainer-sport">Boxing</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
-                        <button class="btn btn-primary"
-                            onclick="openImageModal('images/trainer_3_schedule.jpg')">Расписание</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Generate 9 more placeholders for total 12 -->
-            <!-- Placeholder Trainers 4-12 -->
-            <script>
-                // Simple script to render remaining 9 trainer placeholders to save space in this file
-                // In production you would hardcode them or fetch from JSON
-                for (let i = 4; i <= 12; i++) {
-                    document.write(`
-                    <div class="card trainer-card">
-                        <img src="images/trainer_${i}.jpg" onerror="this.src='https://placehold.co/100x100?text=TRENER ${i}'" class="trainer-img">
-                        <div class="trainer-info">
-                            <div class="trainer-name">Тренер ${i}</div>
-                            <div class="trainer-sport">Спорт</div>
-                            <div class="trainer-actions">
-                                <a href="#" class="btn btn-outline">Telegram</a>
-                                <button class="btn btn-primary" onclick="openImageModal('images/trainer_${i}_schedule.jpg')">Расписание</button>
-                            </div>
-                        </div>
-                    </div>
-                    `);
-                }
-            </script>
         </div>
 
         <!-- PAYMENT TAB -->
