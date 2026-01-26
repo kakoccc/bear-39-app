@@ -4,560 +4,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bear Gym | Premium Club</title>
+    <title>Bear Fitness</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0c0c0e;
-            --secondary-bg: #1a1a1d;
-            --accent-color: #e2fb4b;
-            /* Electric Lime */
-            --accent-muted: #c4d641;
-            --text-primary: #ffffff;
-            --text-secondary: #9a9a9a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --safe-area-inset-top: 0px;
-            --safe-area-inset-bottom: 0px;
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            /* We'll use custom scrolling for tabs */
-            height: 100vh;
-        }
-
-        /* UI/UX Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Main Container */
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            padding-bottom: 80px;
-            /* Nav bar height */
-        }
-
-        /* Glassmorphism Header */
-        header {
-            padding: 20px;
-            background: linear-gradient(180deg, rgba(12, 12, 14, 0.8) 0%, rgba(12, 12, 14, 0) 100%);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 24px;
-            letter-spacing: -1px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-        }
-
-        .user-badge {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .user-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--accent-color);
-        }
-
-        /* Content Area */
-        .content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 20px;
-            scrollbar-width: none;
-        }
-
-        .content::-webkit-scrollbar {
-            display: none;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Hero Card */
-        .hero {
-            background: linear-gradient(135deg, #1a1a1d 0%, #0c0c0e 100%);
-            border-radius: 24px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid var(--glass-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 200px;
-            height: 200px;
-            background: var(--accent-color);
-            filter: blur(80px);
-            opacity: 0.15;
-            z-index: 0;
-        }
-
-        .hero-title {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .hero-value {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .stat-card {
-            background: var(--glass);
-            padding: 15px;
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-
-        .stat-val {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        /* Section Titles */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .section-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .view-all {
-            color: var(--accent-color);
-            font-size: 14px;
-            text-decoration: none;
-        }
-
-        /* Trainer Cards */
-        .trainer-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 12px;
-            margin-bottom: 16px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            transition: transform 0.2s;
-        }
-
-        .trainer-card:active {
-            transform: scale(0.98);
-        }
-
-        .trainer-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            object-fit: cover;
-            background: #222;
-        }
-
-        .trainer-info {
-            flex: 1;
-        }
-
-        .trainer-name {
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .trainer-specialty {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .trainer-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            background: var(--secondary-bg);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--accent-color);
-        }
-
-        /* Price Cards */
-        .price-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .price-card.featured {
-            border-color: var(--accent-color);
-            background: linear-gradient(135deg, rgba(226, 251, 75, 0.05) 0%, rgba(12, 12, 14, 0) 100%);
-        }
-
-        .price-title {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .price-val {
-            font-size: 36px;
-            font-weight: 800;
-            margin: 10px 0;
-        }
-
-        .price-features {
-            margin: 20px 0;
-            padding: 0;
-            list-style: none;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .price-features li {
-            margin-bottom: 8px;
-        }
-
-        .btn-buy {
-            background: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 14px;
-            font-weight: 700;
-            width: 100%;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-buy:active {
-            transform: scale(0.96);
-            background: var(--accent-muted);
-        }
-
-        /* Navigation Bar */
-        nav {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(26, 26, 29, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-            z-index: 100;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 10px;
-            padding: 8px 12px;
-            transition: 0.3s;
-        }
-
-        .nav-item.active {
-            color: var(--accent-color);
-            background: rgba(226, 251, 75, 0.1);
-            border-radius: 16px;
-        }
-
-        .nav-icon {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        /* Utils */
-        .mb-20 {
-            margin-bottom: 20px;
-        }
-
-        .mt-10 {
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="app-container">
-        <header>
-            <div class="logo">Bear Gym</div>
-            <div class="user-badge">
-                <div class="user-avatar" id="avatar"></div>
-                <span id="user-name">Guest</span>
-            </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">BEAR<span>FITNESS</span></div>
         </header>
 
-        <div class="content">
-            <!-- Home Tab -->
-            <div id="home" class="tab-content active">
-                <div class="hero">
-                    <div class="hero-title">Ваш абонемент</div>
-                    <div class="hero-value">Безлимит PRO</div>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-label">Осталось</div>
-                            <div class="stat-val">24 дня</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Визитов</div>
-                            <div class="stat-val">15 / 30</div>
-                        </div>
-                    </div>
-                </div>
+        <!-- TITLE TAB -->
+        <div id="home" class="tab-content active">
+            <div class="card">
+                <p style="font-size: 14px; line-height: 1.5; color: var(--color-text-muted);">
+                    Премиальный фитнес-клуб с современным оборудованием, профессиональными тренерами и уникальной
+                    атмосферой энергии.
+                </p>
+            </div>
 
-                <div class="section-header">
-                    <h2>Общее расписание</h2>
+            <div class="section-title">Почему мы?</div>
+            <div class="bento-grid">
+                <div class="bento-item">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <h4>Technogym</h4>
+                    <p>Топ оборудование</p>
                 </div>
-                <div class="card mb-20"
-                    style="background: var(--glass); border-radius: 20px; padding: 15px; border: 1px solid var(--glass-border);">
-                    <img src="https://via.placeholder.com/600x400?text=CLUB+SCHEDULE"
-                        style="width:100%; border-radius:12px;">
+                <div class="bento-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <h4>24/7</h4>
+                    <p>Круглосуточно</p>
+                </div>
+                <div class="bento-item">
+                    <i class="fa-solid fa-shower"></i>
+                    <h4>SPA Зона</h4>
+                    <p>Сауна и хаммам</p>
+                </div>
+                <div class="bento-item">
+                    <i class="fa-solid fa-users"></i>
+                    <h4>Community</h4>
+                    <p>Сильное окружение</p>
                 </div>
             </div>
 
-            <!-- Trainers Tab -->
-            <div id="trainers" class="tab-content">
-                <div class="section-header">
-                    <h2>Наши эксперты</h2>
-                </div>
+            <div class="section-title" style="margin-top: 24px;">Акции</div>
+            <div class="card"
+                style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: black;">
+                <h3 style="margin-bottom: 4px;">СТАРТ ЗА 0₽</h3>
+                <p style="font-size: 13px; opacity: 0.9;">При покупке карты на год — первый месяц бесплатно.</p>
+            </div>
+        </div>
 
-                <div class="trainer-card">
-                    <img src="https://picsum.photos/seed/t1/150" class="trainer-img">
-                    <div class="trainer-info">
-                        <div class="trainer-name">Иван Петров</div>
-                        <div class="trainer-specialty">Силовой тренинг | Bodybuilding</div>
-                    </div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/ivan_trainer" class="btn-icon">TG</a>
-                        <div class="btn-icon" onclick="showSchedule('Иван Петров')">📅</div>
-                    </div>
-                </div>
+        <!-- SCHEDULE TAB -->
+        <div id="schedule" class="tab-content">
+            <div class="section-title">Расписание на сегодня</div>
 
-                <div class="trainer-card">
-                    <img src="https://picsum.photos/seed/t2/150" class="trainer-img">
-                    <div class="trainer-info">
-                        <div class="trainer-name">Анна Сидорова</div>
-                        <div class="trainer-specialty">Yoga | Stretching | Pilates</div>
-                    </div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/anna_yoga" class="btn-icon">TG</a>
-                        <div class="btn-icon" onclick="showSchedule('Анна Сидорова')">📅</div>
-                    </div>
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                    <span style="font-weight:700; color: var(--color-primary);">18:00</span>
+                    <span style="font-size:12px; opacity:0.7;">60 мин</span>
                 </div>
+                <h3 style="margin-bottom: 4px;">CrossFit Intro</h3>
+                <p style="font-size: 13px; color: var(--color-text-muted);">Иван Петров • Зал функционального тренинга
+                </p>
+                <button class="btn btn-outline"
+                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
+            </div>
 
-                <div class="trainer-card">
-                    <img src="https://picsum.photos/seed/t3/150" class="trainer-img">
-                    <div class="trainer-info">
-                        <div class="trainer-name">Сергей Васильев</div>
-                        <div class="trainer-specialty">CrossFit | Функц. тренинг</div>
-                    </div>
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                    <span style="font-weight:700; color: var(--color-primary);">19:30</span>
+                    <span style="font-size:12px; opacity:0.7;">90 мин</span>
+                </div>
+                <h3 style="margin-bottom: 4px;">Yoga Flow</h3>
+                <p style="font-size: 13px; color: var(--color-text-muted);">Анна Сидорова • Зал йоги</p>
+                <button class="btn btn-outline"
+                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
+            </div>
+
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                    <span style="font-weight:700; color: var(--color-primary);">21:00</span>
+                    <span style="font-size:12px; opacity:0.7;">45 мин</span>
+                </div>
+                <h3 style="margin-bottom: 4px;">Fight Club</h3>
+                <p style="font-size: 13px; color: var(--color-text-muted);">Сергей Васильев • Зона единоборств</p>
+                <button class="btn btn-outline"
+                    style="margin-top: 12px; font-size: 12px; padding: 8px;">Записаться</button>
+            </div>
+        </div>
+
+        <!-- TRAINERS TAB -->
+        <div id="trainers" class="tab-content">
+            <div class="section-title">Наши тренеры</div>
+
+            <div class="card trainer-card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2670&auto=format&fit=crop"
+                    class="trainer-img">
+                <div class="trainer-info">
+                    <div class="trainer-name">Иван Петров</div>
+                    <div class="trainer-sport">CrossFit</div>
                     <div class="trainer-actions">
-                        <a href="https://t.me/sergey_pro" class="btn-icon">TG</a>
-                        <div class="btn-icon" onclick="showSchedule('Сергей Васильев')">📅</div>
+                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
+                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Prices Tab -->
-            <div id="prices" class="tab-content">
-                <div class="section-header">
-                    <h2>Абонементы</h2>
-                </div>
-
-                <div class="price-card featured">
-                    <div class="price-title">Самый популярный</div>
-                    <div class="price-val">25 000 ₽</div>
-                    <div class="price-title">Годовой безлимит</div>
-                    <ul class="price-features">
-                        <li>Доступ 24/7 во все залы</li>
-                        <li>5 гостевых визитов</li>
-                        <li>Заморозка на 30 дней</li>
-                    </ul>
-                    <button class="btn-buy" onclick="handleBuy('Годовой безлимит')">Купить сейчас</button>
-                </div>
-
-                <div class="price-card">
-                    <div class="price-val">18 000 ₽</div>
-                    <div class="price-title">Дневной (12 мес)</div>
-                    <ul class="price-features">
-                        <li>С 07:00 до 16:00</li>
-                        <li>Все тренажеры</li>
-                        <li>Бассейн включен</li>
-                    </ul>
-                    <button class="btn-buy" onclick="handleBuy('Дневной (12 мес)')">Выбрать</button>
+            <div class="card trainer-card">
+                <img src="https://images.unsplash.com/photo-1609899537878-39d4a74869e9?q=80&w=2576&auto=format&fit=crop"
+                    class="trainer-img">
+                <div class="trainer-info">
+                    <div class="trainer-name">Анна Сидорова</div>
+                    <div class="trainer-sport">Yoga & Pilates</div>
+                    <div class="trainer-actions">
+                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
+                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Info Tab -->
-            <div id="info" class="tab-content">
-                <div class="section-header">
-                    <h2>О клубе</h2>
-                </div>
-                <div class="hero">
-                    <div class="hero-title">Адрес</div>
-                    <div class="stat-val">ул. Спортивная, д. 1</div>
-                    <div class="hero-title mt-10">Время работы</div>
-                    <div class="stat-val">Пн-Вс: 07:00 — 23:00</div>
-                    <button class="btn-buy mt-10"
-                        style="background: var(--glass); color: var(--text-primary); border: 1px solid var(--glass-border);">Позвонить
-                        нам</button>
-                </div>
-                <div class="card"
-                    style="border-radius: 20px; background: var(--glass); padding: 10px; border: 1px solid var(--glass-border);">
-                    <img src="https://via.placeholder.com/600x300?text=CLUB+MAP"
-                        style="width:100%; border-radius:12px;">
+            <div class="card trainer-card">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
+                    class="trainer-img">
+                <div class="trainer-info">
+                    <div class="trainer-name">Сергей Васильев</div>
+                    <div class="trainer-sport">Boxing</div>
+                    <div class="trainer-actions">
+                        <a href="https://t.me/example" target="_blank" class="btn btn-outline"> Telegram</a>
+                        <button class="btn btn-primary" onclick="switchTab('schedule')">Расписание</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <nav>
-            <a href="#" class="nav-item active" onclick="switchTab('home')">
-                <span class="nav-icon">🏠</span>
-                Главная
-            </a>
-            <a href="#" class="nav-item" onclick="switchTab('trainers')">
-                <span class="nav-icon">💪</span>
-                Тренеры
-            </a>
-            <a href="#" class="nav-item" onclick="switchTab('prices')">
-                <span class="nav-icon">💎</span>
-                Цены
-            </a>
-            <a href="#" class="nav-item" onclick="switchTab('info')">
-                <span class="nav-icon">📍</span>
-                Инфо
-            </a>
-        </nav>
+        <!-- PAYMENT TAB -->
+        <div id="payment" class="tab-content">
+            <div class="section-title">Оплата услуг</div>
+            <div class="card" style="text-align: center;">
+                <div class="qr-placeholder">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://bearfitness.com/pay"
+                        alt="QR Code" style="width:100%; border-radius: var(--radius-md);">
+                </div>
+                <h3 style="margin-bottom: 12px;">Единая ссылка</h3>
+                <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 24px;">
+                    Используйте эту универсальную ссылку или QR-код для оплаты любой услуги клуба.
+                    <br><br>
+                    <span style="color: var(--color-primary);">Важно:</span> Оплачивайте сумму с учётом стоимости
+                    выбранной вами услуги или абонемента.
+                </p>
+                <a href="#" class="btn btn-success">
+                    Перейти к оплате <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- INFO TAB -->
+        <div id="info" class="tab-content">
+            <div class="section-title">Контакты</div>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.5683457582236!2d37.6173!3d55.7558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0xa886bf5a3d9b2e68!2sThe%20Moscow%20Kremlin!5e0!3m2!1sen!2sru!4v1620000000000!5m2!1sen!2sru"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 16px;">Bear Fitness Club</h3>
+
+                <div class="contact-row">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>г. Москва, ул. Спортивная, д. 10</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Ежедневно: 24 часа</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@bearfitness.ru</span>
+                </div>
+
+                <a href="tel:+79990000000" class="btn btn-primary" style="margin-top: 12px;">
+                    <i class="fa-solid fa-phone"></i> Позвонить нам
+                </a>
+            </div>
+        </div>
+
     </div>
 
-    <script>
-        const webapp = window.Telegram.WebApp;
-        webapp.ready();
-        webapp.expand();
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-item active" onclick="switchTab('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Главная</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('schedule')">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Распис.</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('trainers')">
+            <i class="fa-solid fa-users"></i>
+            <span>Тренеры</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('payment')">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Оплата</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('info')">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Инфо</span>
+        </div>
+    </nav>
 
-        // Setup WebApp colors
-        document.documentElement.style.setProperty('--bg-color', webapp.backgroundColor || '#0c0c0e');
-
-        const user = webapp.initDataUnsafe.user;
-        if (user) {
-            document.getElementById('user-name').innerText = user.first_name || 'Атлет';
-            if (user.photo_url) {
-                document.getElementById('avatar').style.backgroundImage = `url(${user.photo_url})`;
-                document.getElementById('avatar').style.backgroundSize = 'cover';
-            }
-        }
-
-        function switchTab(tabId) {
-            // Update UI
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-
-            // Haptic Feedback
-            webapp.HapticFeedback.impactOccurred('light');
-        }
-
-        function handleBuy(pkg) {
-            webapp.HapticFeedback.selectionChanged();
-            webapp.showConfirm(`Вы хотите приобрести тариф "${pkg}"?`);
-        }
-
-        function showSchedule(trainer) {
-            webapp.HapticFeedback.impactOccurred('medium');
-            webapp.showAlert(`Персональное расписание тренера ${trainer} будет загружено...`);
-        }
-
-        // Handle Main Button
-        webapp.MainButton.setText("ЗАКРЫТЬ");
-        webapp.MainButton.hide();
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
