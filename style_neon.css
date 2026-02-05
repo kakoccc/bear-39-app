@@ -1,0 +1,622 @@
+/* Bear Fitness Design System - NEON PULSE VERSION */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #F97316;
+    /* Energy Orange */
+    --color-primary-glow: rgba(249, 115, 22, 0.6);
+    /* Neon Glow */
+    --color-secondary: #FB923C;
+    --color-btn-primary: #F97316;
+    /* Orange for actions */
+    --color-btn-hover: #FB923C;
+
+    --color-success: #22C55E;
+    --color-background: #000000;
+    /* PURE BLACK */
+    --color-surface: #111111;
+    /* Dark Grey Surface */
+    --color-surface-hover: #1a1a1a;
+    /* Slightly lighter on hover */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-border: #333333;
+
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.8);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.9);
+    --shadow-neon: 0 0 10px var(--color-primary-glow), 0 0 20px rgba(249, 115, 22, 0.2);
+
+    --nav-height: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: var(--font-body);
+}
+
+body {
+    background:
+        /* Subtle radial gradient for depth */
+        radial-gradient(ellipse 100% 70% at 50% -10%,
+            rgba(20, 35, 65, 0.9) 0%,
+            rgba(15, 25, 50, 0.6) 25%,
+            rgba(10, 18, 35, 0.4) 50%,
+            transparent 80%),
+        /* Very dark navy blue base - almost black */
+        #0a0e1a;
+    background-attachment: fixed;
+    color: var(--color-text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Subtle particles for atmosphere */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(1px 1px at 25% 35%, rgba(59, 130, 246, 0.08), transparent),
+        radial-gradient(1px 1px at 75% 65%, rgba(59, 130, 246, 0.06), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(59, 130, 246, 0.07), transparent);
+    background-size: 300px 300px, 400px 400px, 350px 350px;
+    background-position: 0 0, 100px 150px, 200px 80px;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand,
+.price {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Container */
+.app-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: calc(var(--nav-height) + 20px);
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 16px;
+}
+
+.logo-container {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.club-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.brand span {
+    color: var(--color-primary);
+    font-size: 28px;
+    text-shadow: 0 0 15px var(--color-primary-glow);
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 700px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    border-radius: var(--radius-md);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--color-primary);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* Typography */
+.section-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 24px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* Cards */
+.card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+}
+
+.card-bento {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    text-decoration: none;
+    gap: 8px;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background: var(--color-btn-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+
+.btn-primary:hover {
+    background: var(--color-btn-hover);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+    transform: none;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--color-btn-primary);
+    color: var(--color-btn-primary);
+}
+
+.btn-success {
+    background: var(--color-btn-primary);
+    color: white;
+}
+
+/* Nav Bar */
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-muted);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 8px;
+    width: 25%;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 2px;
+    transition: all 0.3s;
+}
+
+.nav-item.active {
+    color: var(--color-primary);
+}
+
+.nav-item.active i {
+    filter: drop-shadow(0 0 8px var(--color-primary-glow));
+    transform: translateY(-2px);
+}
+
+/* Tabs */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+
+/* Why Us Buttons - NEON PULSE STYLE */
+.why-us-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.why-us-btn {
+    background: var(--color-surface);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    position: relative;
+    overflow: hidden;
+    /* Initial Glow */
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.1);
+}
+
+/* Hover Effect */
+.why-us-btn:hover {
+    background: var(--color-surface-hover);
+    transform: translateY(-4px) scale(1.02);
+    /* Neon Glow Intensification */
+    box-shadow: 0 0 50px var(--color-primary-glow),
+        0 0 100px rgba(249, 115, 22, 0.1) inset;
+    border-color: #ff9f43;
+}
+
+/* Active Click Effect */
+.why-us-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* Pulse Animation for Border/Glow */
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+    }
+}
+
+/* Apply animation on load or constant? Let's make it constant for the 'Pulse' vibe */
+.why-us-btn {
+    animation: neonPulse 3s infinite ease-in-out;
+}
+
+.why-us-btn:hover {
+    animation: none;
+    /* Stop pulse on hover to keep the intense glow */
+}
+
+.why-us-btn i {
+    font-size: 32px;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 5px var(--color-primary-glow));
+    transition: all 0.3s;
+}
+
+.why-us-btn:hover i {
+    transform: scale(1.1);
+    color: #fff;
+    filter: drop-shadow(0 0 10px var(--color-primary));
+}
+
+.why-us-btn span {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Trainer Cards - Premium Style */
+.trainers-slider {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.trainers-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.trainer-card {
+    flex: 0 0 280px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.trainer-card:hover {
+    transform: translateY(5px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 20px var(--color-primary-glow);
+    border-color: var(--color-primary);
+}
+
+.trainer-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    background-color: #1a1a1a;
+}
+
+.trainer-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.trainer-name {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.trainer-sport {
+    font-size: 14px;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.trainer-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.trainer-actions .btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.trainer-actions .btn i {
+    font-size: 14px;
+}
+
+/* Payment QR */
+.qr-placeholder {
+    width: 250px;
+    max-width: 100%;
+    height: 250px;
+    background: white;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Map */
+.map-container {
+    height: 400px;
+    background: #1a1a1a;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.map-container iframe {
+    border-radius: var(--radius-md);
+}
+
+/* Contact */
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    color: var(--color-text);
+    font-size: 16px;
+}
+
+.contact-row span,
+.contact-row a {
+    color: var(--color-text) !important;
+}
+
+.contact-row i {
+    color: var(--color-primary);
+    width: 24px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Bot Response Area */
+.bot-response {
+    margin-top: 20px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border-left: 4px solid var(--color-primary);
+}
+
+.bot-message p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.response-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.response-images img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+#responseButton {
+    margin-top: 16px;
+}
+
+#responseButton .btn {
+    width: 100%;
+}

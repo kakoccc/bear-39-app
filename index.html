@@ -7,7 +7,8 @@
     <title>Спортивный клуб Медведь</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_neon.css">
+
 </head>
 
 <body>
@@ -36,7 +37,8 @@
         <!-- HOME TAB -->
         <div id="home" class="tab-content active">
             <div class="" style="margin-bottom: 20px;">
-                <h1 style="font-size: 24px; line-height: 1.1; margin-bottom: 8px; color: white;">ПЕРВЫЙ СПОРТИВНЫЙ КЛУБ
+                <h1 class="font-heading" style="font-size: 24px; line-height: 1.1; margin-bottom: 8px;">ПЕРВЫЙ
+                    СПОРТИВНЫЙ КЛУБ
                     В ЧЕРНЯХОВСКЕ</h1>
                 <h2 style="font-size: 18px; color: var(--color-primary); margin-bottom: 12px;">Для детей и Взрослых</h2>
             </div>
@@ -44,19 +46,19 @@
             <div class="section-title">Почему мы?</div>
             <div class="why-us-buttons">
                 <button class="why-us-btn" onclick="showPhilosophy()">
-                    <i class="fa-solid fa-trophy"></i>
+                    <i class="fa-solid fa-crown"></i>
                     <span>Наша философия</span>
                 </button>
                 <button class="why-us-btn" onclick="showTopTrainers()">
-                    <i class="fa-solid fa-medal"></i>
+                    <i class="fa-solid fa-star"></i>
                     <span>Топовые тренеры</span>
                 </button>
                 <button class="why-us-btn" onclick="showEquipment()">
-                    <i class="fa-solid fa-gem"></i>
+                    <i class="fa-solid fa-dumbbell"></i>
                     <span>Премиум-оснащение</span>
                 </button>
                 <button class="why-us-btn" onclick="showCommunity()">
-                    <i class="fa-solid fa-handshake"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>Атмосфера и комьюнити</span>
                 </button>
             </div>
@@ -75,151 +77,199 @@
         <div id="trainers" class="tab-content">
             <div class="section-title">Наши тренеры</div>
 
-            <!-- Trainer 1 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_12.jpg" class="trainer-img" alt="Александр Ковалев">
-                <div class="trainer-info">
-                    <div class="trainer-name">Александр Ковалев</div>
-                    <div class="trainer-sport">Самбо для детей</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/aleksandr_kovalev_coach" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+            <div class="trainers-slider">
+                <!-- Trainer 1 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_12.jpg?v=2" class="trainer-img" alt="Александр Ковалев">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Александр Ковалев</div>
+                        <div class="trainer-sport">Самбо для детей</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/aleksandr_kovalev_coach" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_1_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 2 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_1.jpg" class="trainer-img" alt="Григорий Хасанов">
-                <div class="trainer-info">
-                    <div class="trainer-name">Григорий Хасанов</div>
-                    <div class="trainer-sport">Тренер</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/grishamutant" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 2 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_1.jpg?v=2" class="trainer-img" alt="Григорий Хасанов">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Григорий Хасанов</div>
+                        <div class="trainer-sport">Тренер</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/grishamutant" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_2_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 3 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_13.jpg" class="trainer-img" alt="Матвей Морсков">
-                <div class="trainer-info">
-                    <div class="trainer-name">Матвей Морсков</div>
-                    <div class="trainer-sport">MMA</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/Morskov_coachmma" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 3 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_13.jpg?v=2" class="trainer-img" alt="Матвей Морсков">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Матвей Морсков</div>
+                        <div class="trainer-sport">MMA</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/Morskov_coachmma" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_3_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 4 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_2.jpg" class="trainer-img" alt="Михаил Стельманас">
-                <div class="trainer-info">
-                    <div class="trainer-name">Михаил Стельманас</div>
-                    <div class="trainer-sport">Бокс</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/Stelmanas_boxingcoach" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 4 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_2.jpg" class="trainer-img" alt="Михаил Стельманас">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Михаил Стельманас</div>
+                        <div class="trainer-sport">Бокс</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/Stelmanas_boxingcoach" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_4_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 5 -->
-            <div class="card trainer-card">
-                <img src="images/trainer_3.jpg" class="trainer-img" alt="Надежда Головизнина">
-                <div class="trainer-info">
-                    <div class="trainer-name">Надежда Головизнина</div>
-                    <div class="trainer-sport">Фитнес</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/NadezhdaGoloviznina" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 5 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_3.jpg" class="trainer-img" alt="Надежда Головизнина">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Надежда Головизнина</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/NadezhdaGoloviznina" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_5_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 6 -->
-
-            <div class="card trainer-card">
-                <img src="images/trainer_4.jpg" class="trainer-img" alt="Артем Седов">
-                <div class="trainer-info">
-                    <div class="trainer-name">Артем Седов</div>
-                    <div class="trainer-sport">Тренер</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/zifirka_4o4" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 6 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_4.jpg" class="trainer-img" alt="Артем Седов">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Артем Седов</div>
+                        <div class="trainer-sport">Тренер</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/zifirka_4o4" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_6_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 7 -->
-
-            <div class="card trainer-card">
-                <img src="images/trainer_5.jpg" class="trainer-img" alt="Евгения Москаленко">
-                <div class="trainer-info">
-                    <div class="trainer-name">Евгения Москаленко</div>
-                    <div class="trainer-sport">Йога</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/evgeniyoga" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 7 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_5.jpg" class="trainer-img" alt="Евгения Москаленко">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Евгения Москаленко</div>
+                        <div class="trainer-sport">Йога</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/evgeniyoga" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_7_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 8 -->
-
-            <div class="card trainer-card">
-                <img src="images/trainer_6.jpg" class="trainer-img" alt="Артем Хафизов">
-                <div class="trainer-info">
-                    <div class="trainer-name">Артем Хафизов</div>
-                    <div class="trainer-sport">Тренер</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/Artybro" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 8 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_6.jpg" class="trainer-img" alt="Артем Хафизов">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Артем Хафизов</div>
+                        <div class="trainer-sport">Тренер</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/Artybro" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_8_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 9 -->
-
-            <div class="card trainer-card">
-                <img src="images/trainer_7.jpg" class="trainer-img" alt="Мария Оганесян">
-                <div class="trainer-info">
-                    <div class="trainer-name">Мария Оганесян</div>
-                    <div class="trainer-sport">Фитнес</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/maryoganesyan" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 9 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_7.jpg" class="trainer-img" alt="Мария Оганесян">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Мария Оганесян</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/maryoganesyan" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_9_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 10 -->
-
-            <div class="card trainer-card">
-                <img src="images/trainer_8.jpg" class="trainer-img" alt="Дарья Ковалева">
-                <div class="trainer-info">
-                    <div class="trainer-name">Дарья Ковалева</div>
-                    <div class="trainer-sport">Фитнес</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/Dasha_Kovaleva39" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 10 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_8.jpg" class="trainer-img" alt="Дарья Ковалева">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Дарья Ковалева</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/Dasha_Kovaleva39" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_10_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Trainer 11 -->
+                <!-- Trainer 11 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_11.jpg" class="trainer-img" alt="Кира Ларина">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Кира Ларина</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/kira_lar0" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_13_schedule.jpg')">Расписание</button>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="card trainer-card">
-                <img src="images/trainer_9.jpg" class="trainer-img" alt="Татьяна Тембер">
-                <div class="trainer-info">
-                    <div class="trainer-name">Татьяна Тембер</div>
-                    <div class="trainer-sport">Фитнес</div>
-                    <div class="trainer-actions">
-                        <a href="https://t.me/Tatiana_B28" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-telegram"></i> Telegram</a>
+                <!-- Trainer 12 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_10.jpg" class="trainer-img" alt="Наталия Тулинова">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Наталия Тулинова</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/shanatkanatashka" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_12_schedule.jpg')">Расписание</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer 13 -->
+                <div class="trainer-card">
+                    <img src="images/trainer_9.jpg" class="trainer-img" alt="Татьяна Тембер">
+                    <div class="trainer-info">
+                        <div class="trainer-name">Татьяна Тембер</div>
+                        <div class="trainer-sport">Фитнес</div>
+                        <div class="trainer-actions">
+                            <a href="https://t.me/Tatiana_B28" target="_blank" class="btn btn-primary">
+                                <i class="fa-brands fa-telegram"></i> Telegram</a>
+                            <button class="btn btn-primary"
+                                onclick="openImageModal('images/trainer_11_schedule.jpg')">Расписание</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,16 +279,13 @@
         <div id="payment" class="tab-content">
             <div class="section-title">Оплата услуг</div>
             <div class="card" style="text-align: center;">
-                <div class="qr-placeholder">
+                <div class="qr-placeholder" onclick="openImageModal('images/qr_payment.jpg')" style="cursor: pointer;">
                     <img src="images/qr_payment.jpg" alt="QR Code для оплаты"
                         style="width:100%; height:100%; object-fit: contain; border-radius: var(--radius-md);">
                 </div>
-                <h3 style="margin-bottom: 12px;">Оплата через СБП</h3>
-                <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: 24px;">
-                    Отсканируйте QR-код для быстрой оплаты через Систему Быстрых Платежей.
-                    <br><br>
-                    <span style="color: var(--color-primary);">Важно:</span> Оплачивайте сумму с учётом стоимости
-                    выбранной вами услуги или абонемента.
+                <h3 style="margin-bottom: 12px;">ЕДИНАЯ ССЫЛКА НА ОПЛАТУ</h3>
+                <p style="font-size: 16px; color: var(--color-text); margin-bottom: 24px; font-weight: 700;">
+                    Используйте эту универсальную ссылку или QR-код для оплаты любой услуги клуба.
                 </p>
                 <a href="https://pay.alfabank.ru/sc/UJqHRQWfsArdbYkm" class="btn btn-success">
                     Перейти к оплате <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -260,20 +307,20 @@
                 <h3 style="margin-bottom: 16px;">Спортивный клуб Медведь</h3>
 
                 <div class="contact-row">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i class="fa-solid fa-map-marker-alt"></i>
                     <span>г. Черняховск, ул. Калинина, д. 6</span>
                 </div>
                 <div class="contact-row">
-                    <i class="fa-solid fa-clock"></i>
+                    <i class="fa-regular fa-clock"></i>
                     <span>Ежедневно: 09:00 - 20:00</span>
                 </div>
                 <div class="contact-row">
                     <i class="fa-brands fa-vk"></i>
-                    <a href="https://vk.com/inster.bear" target="_blank"
-                        style="color: inherit; text-decoration: none;">vk.com/inster.bear</a>
+                    <a href="https://vk.com/inster.bear" target="_blank">vk.com/inster.bear</a>
                 </div>
 
-                <a href="tel:+79216169646" class="btn btn-primary" style="margin-top: 12px;">
+                <a href="tel:+79216169646" onclick="window.location.href='tel:+79216169646'; return false;"
+                    class="btn btn-primary" style="margin-top: 12px;">
                     <i class="fa-solid fa-phone"></i> Позвонить нам
                 </a>
             </div>

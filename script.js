@@ -69,12 +69,22 @@ function closeImageModal() {
 }
 
 // Bot Response Functions
-function showBotResponse(text, images = [], buttonHtml = '') {
+let activeResponseId = null;
+
+function showBotResponse(id, text, images = [], buttonHtml = '') {
     const responseArea = document.getElementById('botResponse');
     const responseText = document.getElementById('responseText');
     const responseImages = document.getElementById('responseImages');
     const responseButton = document.getElementById('responseButton');
 
+    // Toggle logic: if clicking the same button and it's visible, hide it
+    if (activeResponseId === id && responseArea.style.display === 'block') {
+        responseArea.style.display = 'none';
+        activeResponseId = null;
+        return;
+    }
+
+    activeResponseId = id;
     responseText.innerHTML = text;
 
     // Clear previous images
@@ -106,26 +116,26 @@ function showBotResponse(text, images = [], buttonHtml = '') {
 function showPhilosophy() {
     const text = `<p>🏆 <strong>Наша философия</strong></p>
     <p>Мы не просто качаем мышцы. Мы создаем сообщество, где каждый, от новичка до профессионала, находит свой путь к здоровью и уверенности. Ваш результат — наша общая цель!</p>`;
-    showBotResponse(text);
+    showBotResponse('philosophy', text);
 }
 
 function showTopTrainers() {
     const text = `<p>🏅 <strong>Топовые тренеры</strong></p>
     <p>Все наши тренеры — сертифицированные профессионалы с победным опытом в спорте и более 5 лет практики. Мы растем вместе с вами!</p>`;
     const buttonHtml = '<button class="btn btn-primary" onclick="switchTab(\'trainers\')"><i class="fa-solid fa-users"></i> Посмотреть всех тренеров</button>';
-    showBotResponse(text, [], buttonHtml);
+    showBotResponse('trainers', text, [], buttonHtml);
 }
 
 function showEquipment() {
     const text = `<p>💎 <strong>Премиум-оснащение</strong></p>
     <p>Тренируйтесь на профессиональном оборудовании в комфортной атмосфере.</p>`;
     const images = ['images/services.png'];
-    showBotResponse(text, images);
+    showBotResponse('equipment', text, images);
 }
 
 function showCommunity() {
     const text = `<p>🤝 <strong>Атмосфера и комьюнити</strong></p>
     <p>У нас вы найдете не просто зал, а команду единомышленников. Регулярные внутриклубные соревнования, мастер-классы и совместные мероприятия — мы за живое общение!</p>`;
     const images = ['images/schedule.png'];
-    showBotResponse(text, images);
+    showBotResponse('community', text, images);
 }
