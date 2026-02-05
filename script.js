@@ -73,8 +73,17 @@ let activeResponseId = null;
 
 function hideBotResponse() {
     const responseArea = document.getElementById('botResponse');
-    responseArea.style.display = 'none';
-    activeResponseId = null;
+
+    // Add hiding class to trigger animation
+    responseArea.classList.add('hiding');
+
+    // Wait for animation to finish (match CSS duration 0.3s)
+    setTimeout(() => {
+        responseArea.style.display = 'none';
+        responseArea.classList.remove('hiding');
+        activeResponseId = null;
+    }, 300);
+
     if (tg.HapticFeedback) {
         tg.HapticFeedback.impactOccurred('light');
     }
