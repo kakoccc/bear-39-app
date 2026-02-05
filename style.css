@@ -1,11 +1,11 @@
 /* Bear Fitness Design System */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
-    --color-primary: #F97316;
-    /* Energy Orange */
-    --color-secondary: #FB923C;
-    /* Light Orange */
+    --color-primary: #a70707;
+    /* Deep Red */
+    --color-secondary: #c91010;
+    /* Light Red */
     --color-success: #22C55E;
     /* Green */
     --color-background: #1F2937;
@@ -16,8 +16,8 @@
     /* White-ish */
     --color-text-muted: #9CA3AF;
 
-    --font-heading: 'Barlow Condensed', sans-serif;
-    --font-body: 'Barlow', sans-serif;
+    --font-heading: 'Bebas Neue', sans-serif;
+    --font-body: 'Bebas Neue', sans-serif;
 
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -39,7 +39,8 @@
 
 body {
     font-family: var(--font-body);
-    background-color: var(--color-background);
+    background: linear-gradient(135deg, #000000 0%, #0a0e1a 25%, #0f1729 50%, #1a1f3a 75%, #1e2847 100%);
+    background-attachment: fixed;
     color: var(--color-text);
     height: 100vh;
     display: flex;
@@ -386,4 +387,105 @@ h4,
     color: var(--color-primary);
     width: 20px;
     text-align: center;
+}
+
+/* Why Us Buttons */
+.why-us-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.why-us-btn {
+    background: var(--color-surface);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+.why-us-btn:hover {
+    background: rgba(249, 115, 22, 0.1);
+    transform: translateY(-2px);
+}
+
+.why-us-btn:active {
+    transform: translateY(0);
+}
+
+.why-us-btn i {
+    font-size: 28px;
+    color: var(--color-primary);
+}
+
+.why-us-btn span {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Bot Response Area */
+.bot-response {
+    margin-top: 20px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border-left: 4px solid var(--color-primary);
+}
+
+.bot-message p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.response-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.response-images img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.response-images img:hover {
+    transform: scale(1.02);
+}
+
+#responseButton {
+    margin-top: 16px;
+}
+
+#responseButton .btn {
+    width: 100%;
 }
