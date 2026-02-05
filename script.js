@@ -71,6 +71,15 @@ function closeImageModal() {
 // Bot Response Functions
 let activeResponseId = null;
 
+function hideBotResponse() {
+    const responseArea = document.getElementById('botResponse');
+    responseArea.style.display = 'none';
+    activeResponseId = null;
+    if (tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('light');
+    }
+}
+
 function showBotResponse(id, text, images = [], buttonHtml = '') {
     const responseArea = document.getElementById('botResponse');
     const responseText = document.getElementById('responseText');
@@ -79,8 +88,7 @@ function showBotResponse(id, text, images = [], buttonHtml = '') {
 
     // Toggle logic: if clicking the same button and it's visible, hide it
     if (activeResponseId === id && responseArea.style.display === 'block') {
-        responseArea.style.display = 'none';
-        activeResponseId = null;
+        hideBotResponse();
         return;
     }
 
@@ -99,7 +107,9 @@ function showBotResponse(id, text, images = [], buttonHtml = '') {
         });
     }
 
-    responseButton.innerHTML = buttonHtml;
+    // Add Close button to button area
+    const closeBtnHtml = '<button class="btn btn-outline" style="margin-top: 10px; width: 100%;" onclick="hideBotResponse()">Закрыть</button>';
+    responseButton.innerHTML = buttonHtml + closeBtnHtml;
 
     responseArea.style.display = 'block';
 
