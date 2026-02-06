@@ -77,12 +77,12 @@ function hideBotResponse() {
     // Add hiding class to trigger animation
     responseArea.classList.add('hiding');
 
-    // Wait for animation to finish (match CSS duration 0.3s)
+    // Wait for animation to finish (match CSS duration 0.4s)
     setTimeout(() => {
         responseArea.style.display = 'none';
         responseArea.classList.remove('hiding');
         activeResponseId = null;
-    }, 300);
+    }, 400);
 
     if (tg.HapticFeedback) {
         tg.HapticFeedback.impactOccurred('light');
@@ -116,9 +116,7 @@ function showBotResponse(id, text, images = [], buttonHtml = '') {
         });
     }
 
-    // Add Close button to button area
-    const closeBtnHtml = '<button class="btn btn-outline" style="margin-top: 10px; width: 100%;" onclick="hideBotResponse()">Закрыть</button>';
-    responseButton.innerHTML = buttonHtml + closeBtnHtml;
+    responseButton.innerHTML = buttonHtml;
 
     responseArea.style.display = 'block';
 
