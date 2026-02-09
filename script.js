@@ -322,6 +322,11 @@ function makeCall(phoneNumber) {
     }
 
     if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.openLink('tel:' + phoneNumber);
+        // Очищаем номер и кодируем его для URL
+        const cleanNum = phoneNumber.replace(/[^0-9+]/g, '');
+        const redirectUrl = 'https://kakoccc.github.io/bear-39-app/call.html?num=' + encodeURIComponent(cleanNum);
+
+        // Открываем внешнюю страницу, которая и сделает звонок
+        window.Telegram.WebApp.openLink(redirectUrl);
     }
 }
