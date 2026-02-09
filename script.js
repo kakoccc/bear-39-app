@@ -315,3 +315,20 @@ function showCommunity() {
     const images = (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA.community) ? GALLERY_DATA.community : ['images/schedule.png'];
     showBotResponse('community', text, images, '', 'slider');
 }
+
+function makeCall(phoneNumber) {
+    // Хактикс для подтверждения нажатия
+    if (tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('heavy');
+    }
+
+    const callUrl = 'tel:' + phoneNumber;
+
+    // Пробуем открыть ссылку через официальный API
+    try {
+        tg.openLink(callUrl);
+    } catch (e) {
+        // Если API упал, пробуем стандартный метод (хотя в Mini App он часто заблокирован)
+        window.location.href = callUrl;
+    }
+}
