@@ -317,18 +317,11 @@ function showCommunity() {
 }
 
 function makeCall(phoneNumber) {
-    // Хактикс для подтверждения нажатия
-    if (tg.HapticFeedback) {
-        tg.HapticFeedback.impactOccurred('heavy');
+    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     }
 
-    const callUrl = 'tel:' + phoneNumber;
-
-    // Пробуем открыть ссылку через официальный API
-    try {
-        tg.openLink(callUrl);
-    } catch (e) {
-        // Если API упал, пробуем стандартный метод (хотя в Mini App он часто заблокирован)
-        window.location.href = callUrl;
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.openLink('tel:' + phoneNumber);
     }
 }
