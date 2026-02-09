@@ -46,9 +46,26 @@ function switchTab(tabId) {
 }
 
 // Modal Logic
-// Modal Logic
 let currentModalImages = [];
 let currentModalIndex = 0;
+
+// Swipe logic
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50;
+
+function handleSwipe() {
+    const deltaX = touchEndX - touchStartX;
+    if (Math.abs(deltaX) > swipeThreshold) {
+        if (deltaX > 0) {
+            // Swipe Right -> Previous
+            changeModalSlide(-1);
+        } else {
+            // Swipe Left -> Next
+            changeModalSlide(1);
+        }
+    }
+}
 
 function openImageModal(source, images = []) {
     const modal = document.getElementById("imageModal");
@@ -75,11 +92,13 @@ function openImageModal(source, images = []) {
             nextBtn.style.display = "none";
         }
 
+        modalImg.classList.add('loading');
         modalImg.src = currentModalImages[currentModalIndex];
     } else {
         // Single Image Mode
         currentModalImages = [source];
         currentModalIndex = 0;
+        modalImg.classList.add('loading');
         modalImg.src = source;
 
         // Hide buttons
@@ -88,10 +107,23 @@ function openImageModal(source, images = []) {
     }
 
     modal.style.display = "flex";
-    // Optional: Document body no scroll?
-    // docBody.style.overflow = 'hidden'; 
+
+    // Swipe listeners
+    modal.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    modalImg.onload = function () {
+        this.classList.remove('loading');
+    };
 
     modalImg.onerror = function () {
+        this.classList.remove('loading');
         this.src = 'https://placehold.co/600x800?text=IMAGE+NOT+FOUND';
     };
 
@@ -108,12 +140,14 @@ function changeModalSlide(direction) {
     if (currentModalIndex >= currentModalImages.length) currentModalIndex = 0;
 
     const modalImg = document.getElementById("modalImage");
-    // Add fade effect?
-    modalImg.style.opacity = 0.5;
+
+    // Smooth transition using 'loading' class
+    modalImg.classList.add('loading');
+
+    // Wait for opacity transition to finish (or just long enough) before changing src
     setTimeout(() => {
         modalImg.src = currentModalImages[currentModalIndex];
-        modalImg.style.opacity = 1;
-    }, 150);
+    }, 250);
 }
 
 function closeImageModal() {
@@ -261,7 +295,7 @@ function showEquipment() {
 }
 
 function showCommunity() {
-    const text = `<p>Ты пришел за результатом, а останешься — за атмосферой. Наш зал создан не только для того, чтобы ставить рекорды, но и чтобы чувствовать себя частью команды, приходить с радостью и восстанавливаться с комфортом.</p>
+    const text = `<p>🤝🌍🚀🤜🤛 Ты пришел за результатом, а останешься — за атмосферой. Наш зал создан не только для того, чтобы ставить рекорды, но и чтобы чувствовать себя частью команды, приходить с радостью и восстанавливаться с комфортом.</p>
     <p><strong>Что делает наше пространство уникальным:</strong></p>
     <ul style="list-style: none; padding: 0; margin-bottom: 16px;">
         <li style="margin-bottom: 8px;">• <strong>Заряд для тебя и твоих девайсов:</strong> Пока ты на тренировке, твой телефон заряжается на нашей многофункциональной станции. Оставаться на связи — обязательно.</li>

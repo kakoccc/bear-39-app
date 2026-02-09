@@ -2,24 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --color-primary: #F97316;
+    --color-primary: #f97316;
     /* Energy Orange */
     --color-primary-glow: rgba(249, 115, 22, 0.6);
     /* Neon Glow */
-    --color-secondary: #FB923C;
-    --color-btn-primary: #F97316;
+    --color-secondary: #fb923c;
+    --color-btn-primary: #f97316;
     /* Orange for actions */
-    --color-btn-hover: #FB923C;
+    --color-btn-hover: #fb923c;
 
-    --color-success: #22C55E;
+    --color-success: #22c55e;
     --color-background: #000000;
     /* PURE BLACK */
     --color-surface: #111111;
     /* Dark Grey Surface */
     --color-surface-hover: #1a1a1a;
     /* Slightly lighter on hover */
-    --color-text: #FFFFFF;
-    --color-text-muted: #9CA3AF;
+    --color-text: #ffffff;
+    --color-text-muted: #9ca3af;
     --color-border: #333333;
 
     --font-heading: 'Inter', sans-serif;
@@ -83,8 +83,14 @@ body::before {
         radial-gradient(1px 1px at 25% 35%, rgba(59, 130, 246, 0.08), transparent),
         radial-gradient(1px 1px at 75% 65%, rgba(59, 130, 246, 0.06), transparent),
         radial-gradient(1px 1px at 50% 50%, rgba(59, 130, 246, 0.07), transparent);
-    background-size: 300px 300px, 400px 400px, 350px 350px;
-    background-position: 0 0, 100px 150px, 200px 80px;
+    background-size:
+        300px 300px,
+        400px 400px,
+        350px 350px;
+    background-position:
+        0 0,
+        100px 150px,
+        200px 80px;
     pointer-events: none;
     opacity: 0.3;
     z-index: 0;
@@ -172,6 +178,12 @@ h4,
     border: 1px solid var(--color-border);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
     border-radius: var(--radius-md);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+}
+
+.modal-content.loading {
+    opacity: 0;
 }
 
 .close-modal {
@@ -340,7 +352,6 @@ h4,
     }
 }
 
-
 /* Why Us Buttons - NEON PULSE STYLE */
 .why-us-buttons {
     display: grid;
@@ -374,7 +385,8 @@ h4,
     background: var(--color-surface-hover);
     transform: translateY(-4px) scale(1.02);
     /* Neon Glow Intensification */
-    box-shadow: 0 0 50px var(--color-primary-glow),
+    box-shadow:
+        0 0 50px var(--color-primary-glow),
         0 0 100px rgba(249, 115, 22, 0.1) inset;
     border-color: #ff9f43;
 }
@@ -467,7 +479,9 @@ h4,
 
 .trainer-card:hover {
     transform: translateY(5px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 20px var(--color-primary-glow);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.8),
+        0 0 20px var(--color-primary-glow);
     border-color: var(--color-primary);
 }
 
@@ -658,9 +672,7 @@ h4,
     transition: transform 0.2s;
 }
 
-.response-images img:hover {
-    transform: scale(1.03);
-}
+/* .response-images img:hover removed per user request */
 
 #responseButton {
     margin-top: 16px;
@@ -739,7 +751,7 @@ h4,
     cursor: pointer;
     z-index: 1001;
     /* Above modal content */
-    transition: background 0.3s;
+    /* transition: background 0.3s; */
 }
 
 .modal-nav-btn:hover {
@@ -754,12 +766,10 @@ h4,
     right: 10px;
 }
 
-/* Mobile adjustments */
 @media (max-width: 600px) {
     .modal-nav-btn {
         width: 50px;
         height: 50px;
         background: rgba(0, 0, 0, 0.3);
-        /* Darker bg for mobile visibility */
     }
 }
