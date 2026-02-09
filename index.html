@@ -7,7 +7,7 @@
     <title>Спортивный клуб Медведь</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style_neon.css">
+    <link rel="stylesheet" href="style_neon.css?v=slider3">
 
 </head>
 
@@ -15,7 +15,13 @@
     <!-- Image Modal -->
     <div id="imageModal" class="modal-overlay" onclick="closeImageModal()">
         <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <button class="modal-nav-btn prev" onclick="event.stopPropagation(); changeModalSlide(-1)">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <img class="modal-content" id="modalImage" onclick="event.stopPropagation()">
+        <button class="modal-nav-btn next" onclick="event.stopPropagation(); changeModalSlide(1)">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
     </div>
 
     <div class="app-container">
@@ -79,7 +85,7 @@
             <div class="trainers-slider">
                 <!-- Trainer 1 - Дзюдо детям Александр Ковалёв -->
                 <div class="trainer-card">
-                    <img src="images/trainer_12.jpg?v=2" class="trainer-img" alt="Александр Ковалев">
+                    <img src="images/trainer/trainer_12.jpg?v=2" class="trainer-img" alt="Александр Ковалев">
                     <div class="trainer-info">
                         <div class="trainer-name">Александр Ковалев</div>
                         <div class="trainer-sport">Самбо для детей</div>
@@ -87,14 +93,14 @@
                             <a href="https://t.me/aleksandr_kovalev_coach" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_1_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_1_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 2 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_1.jpg?v=2" class="trainer-img" alt="Григорий Хасанов">
+                    <img src="images/trainer/trainer_1.jpg?v=2" class="trainer-img" alt="Григорий Хасанов">
                     <div class="trainer-info">
                         <div class="trainer-name">Григорий Хасанов</div>
                         <div class="trainer-sport">Тренер</div>
@@ -102,14 +108,14 @@
                             <a href="https://t.me/grishamutant" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_2_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_2_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 3 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_13.jpg?v=2" class="trainer-img" alt="Матвей Морсков">
+                    <img src="images/trainer/trainer_13.jpg?v=2" class="trainer-img" alt="Матвей Морсков">
                     <div class="trainer-info">
                         <div class="trainer-name">Матвей Морсков</div>
                         <div class="trainer-sport">MMA ГРЕППЛИНГ</div>
@@ -117,14 +123,14 @@
                             <a href="https://t.me/Morskov_coachmma" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_3_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_3_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 4 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_2.jpg" class="trainer-img" alt="Михаил Стельманас">
+                    <img src="images/trainer/trainer_2.jpg" class="trainer-img" alt="Михаил Стельманас">
                     <div class="trainer-info">
                         <div class="trainer-name">Михаил Стельманас</div>
                         <div class="trainer-sport">Бокс</div>
@@ -132,14 +138,14 @@
                             <a href="https://t.me/Stelmanas_boxingcoach" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_4_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_4_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 5 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_3.jpg" class="trainer-img" alt="Надежда Головизнина">
+                    <img src="images/trainer/trainer_3.jpg" class="trainer-img" alt="Надежда Головизнина">
                     <div class="trainer-info">
                         <div class="trainer-name">Надежда Головизнина</div>
                         <div class="trainer-sport">Адаптивная Физ. Культура</div>
@@ -147,14 +153,14 @@
                             <a href="https://t.me/NadezhdaGoloviznina" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_5_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_5_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 6 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_4.jpg" class="trainer-img" alt="Артем Седов">
+                    <img src="images/trainer/trainer_4.jpg" class="trainer-img" alt="Артем Седов">
                     <div class="trainer-info">
                         <div class="trainer-name">Артем Седов</div>
                         <div class="trainer-sport">Тренер</div>
@@ -162,14 +168,14 @@
                             <a href="https://t.me/zifirka_4o4" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_6_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_6_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 7 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_5.jpg" class="trainer-img" alt="Евгения Москаленко">
+                    <img src="images/trainer/trainer_5.jpg" class="trainer-img" alt="Евгения Москаленко">
                     <div class="trainer-info">
                         <div class="trainer-name">Евгения Москаленко</div>
                         <div class="trainer-sport">Хатха-Йога</div>
@@ -177,14 +183,14 @@
                             <a href="https://t.me/evgeniyoga" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_7_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_7_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 8 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_6.jpg" class="trainer-img" alt="Артем Хафизов">
+                    <img src="images/trainer/trainer_6.jpg" class="trainer-img" alt="Артем Хафизов">
                     <div class="trainer-info">
                         <div class="trainer-name">Артем Хафизов</div>
                         <div class="trainer-sport">Силовая и функциональная подготовка ОФП</div>
@@ -192,14 +198,14 @@
                             <a href="https://t.me/Artybro" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_8_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_8_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 9 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_7.jpg" class="trainer-img" alt="Мария Оганесян">
+                    <img src="images/trainer/trainer_7.jpg" class="trainer-img" alt="Мария Оганесян">
                     <div class="trainer-info">
                         <div class="trainer-name">Мария Оганесян</div>
                         <div class="trainer-sport">Стретчинг</div>
@@ -207,14 +213,14 @@
                             <a href="https://t.me/maryoganesyan" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_9_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_9_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 10 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_8.jpg" class="trainer-img" alt="Дарья Ковалева">
+                    <img src="images/trainer/trainer_8.jpg" class="trainer-img" alt="Дарья Ковалева">
                     <div class="trainer-info">
                         <div class="trainer-name">Дарья Ковалева</div>
                         <div class="trainer-sport">Нейромоторика для детей</div>
@@ -222,14 +228,14 @@
                             <a href="https://t.me/Dasha_Kovaleva39" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_10_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_10_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 11 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_11.jpg" class="trainer-img" alt="Кира Ларина">
+                    <img src="images/trainer/trainer_11.jpg" class="trainer-img" alt="Кира Ларина">
                     <div class="trainer-info">
                         <div class="trainer-name">Кира Ларина</div>
                         <div class="trainer-sport">Акробатический рок-н-ролл</div>
@@ -237,14 +243,14 @@
                             <a href="https://t.me/kira_lar0" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_13_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_13_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 12 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_10.jpg" class="trainer-img" alt="Наталия Тулинова">
+                    <img src="images/trainer/trainer_10.jpg" class="trainer-img" alt="Наталия Тулинова">
                     <div class="trainer-info">
                         <div class="trainer-name">Наталия Тулинова</div>
                         <div class="trainer-sport">Функциональный тренинг табата</div>
@@ -252,14 +258,14 @@
                             <a href="https://t.me/shanatkanatashka" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_12_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_12_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 13 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_9.jpg" class="trainer-img" alt="Татьяна Тембер">
+                    <img src="images/trainer/trainer_9.jpg" class="trainer-img" alt="Татьяна Тембер">
                     <div class="trainer-info">
                         <div class="trainer-name">Татьяна Тембер</div>
                         <div class="trainer-sport">Фитнес</div>
@@ -267,14 +273,14 @@
                             <a href="https://t.me/Tatiana_B28" target="_blank" class="btn btn-primary">
                                 <i class="fa-brands fa-telegram"></i> Telegram</a>
                             <button class="btn btn-primary"
-                                onclick="openImageModal('images/trainer_11_schedule.jpg')">Расписание</button>
+                                onclick="openImageModal('images/trainer/trainer_11_schedule.jpg')">Расписание</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Trainer 14 -->
                 <div class="trainer-card">
-                    <img src="images/trainer_14.jpg" class="trainer-img" alt="Александр Ковалёв">
+                    <img src="images/trainer/trainer_14.jpg" class="trainer-img" alt="Александр Ковалёв">
                     <div class="trainer-info">
                         <div class="trainer-name">Александр Ковалёв</div>
                         <div class="trainer-sport">Самбо</div>
@@ -362,8 +368,8 @@
         </div>
     </nav>
 
-    <script src="gallery_config.js"></script>
-    <script src="script.js"></script>
+    <script src="gallery_config.js?v=slider3"></script>
+    <script src="script.js?v=slider3"></script>
 </body>
 
 </html>

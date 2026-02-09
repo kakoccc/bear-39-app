@@ -46,14 +46,51 @@ function switchTab(tabId) {
 }
 
 // Modal Logic
-function openImageModal(imgSrc) {
+// Modal Logic
+let currentModalImages = [];
+let currentModalIndex = 0;
+
+function openImageModal(source, images = []) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
-    modal.style.display = "flex";
+    const docBody = document.body; // To disable scroll
+    const prevBtn = document.querySelector('.modal-nav-btn.prev');
+    const nextBtn = document.querySelector('.modal-nav-btn.next');
 
-    // In production, use the actual src. 
-    // Here we handle the error/placeholder logic if specific file missing
-    modalImg.src = imgSrc;
+    // Reset state
+    currentModalImages = [];
+    currentModalIndex = 0;
+
+    if (Array.isArray(images) && images.length > 0) {
+        // Gallery Mode
+        currentModalImages = images;
+        currentModalIndex = (typeof source === 'number') ? source : 0;
+
+        // Show/Hide buttons based on array length
+        if (currentModalImages.length > 1) {
+            prevBtn.style.display = "flex";
+            nextBtn.style.display = "flex";
+        } else {
+            prevBtn.style.display = "none";
+            nextBtn.style.display = "none";
+        }
+
+        modalImg.src = currentModalImages[currentModalIndex];
+    } else {
+        // Single Image Mode
+        currentModalImages = [source];
+        currentModalIndex = 0;
+        modalImg.src = source;
+
+        // Hide buttons
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+    }
+
+    modal.style.display = "flex";
+    // Optional: Document body no scroll?
+    // docBody.style.overflow = 'hidden'; 
+
     modalImg.onerror = function () {
         this.src = 'https://placehold.co/600x800?text=IMAGE+NOT+FOUND';
     };
@@ -63,9 +100,26 @@ function openImageModal(imgSrc) {
     }
 }
 
+function changeModalSlide(direction) {
+    if (currentModalImages.length <= 1) return;
+
+    currentModalIndex += direction;
+    if (currentModalIndex < 0) currentModalIndex = currentModalImages.length - 1;
+    if (currentModalIndex >= currentModalImages.length) currentModalIndex = 0;
+
+    const modalImg = document.getElementById("modalImage");
+    // Add fade effect?
+    modalImg.style.opacity = 0.5;
+    setTimeout(() => {
+        modalImg.src = currentModalImages[currentModalIndex];
+        modalImg.style.opacity = 1;
+    }, 150);
+}
+
 function closeImageModal() {
     const modal = document.getElementById("imageModal");
     modal.style.display = "none";
+    // document.body.style.overflow = '';
 }
 
 // Bot Response Functions
@@ -136,29 +190,21 @@ function showBotResponse(id, text, media = [], buttonHtml = '', mediaType = 'ima
             img.src = currentSlideImages[0];
             img.style.width = '100%';
             img.style.borderRadius = 'var(--radius-md)';
-            img.onclick = () => openImageModal(currentSlideImages[currentSlideIndex]);
+            img.onclick = () => openImageModal(currentSlideIndex, currentSlideImages);
 
-            // Controls
-            const prevBtn = document.createElement('button');
-            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-            prevBtn.className = 'slider-btn prev';
-            prevBtn.onclick = (e) => { e.stopPropagation(); changeSlide(-1); };
-
-            const nextBtn = document.createElement('button');
-            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-            nextBtn.className = 'slider-btn next';
-            nextBtn.onclick = (e) => { e.stopPropagation(); changeSlide(1); };
+            // Controls - REMOVED per user request
+            // Only counter remains
 
             // Counter
             const counter = document.createElement('div');
             counter.id = 'sliderCounter';
-            counter.innerText = `1 / ${currentSlideImages.length}`;
+            // Validating count
+            const validImagesCount = currentSlideImages.length;
+            counter.innerText = `1 / ${validImagesCount}`;
             counter.className = 'slider-counter';
 
             sliderContainer.appendChild(img);
-            if (currentSlideImages.length > 1) {
-                sliderContainer.appendChild(prevBtn);
-                sliderContainer.appendChild(nextBtn);
+            if (validImagesCount > 1) {
                 sliderContainer.appendChild(counter);
             }
 
@@ -189,17 +235,7 @@ function showBotResponse(id, text, media = [], buttonHtml = '', mediaType = 'ima
     }
 }
 
-function changeSlide(direction) {
-    currentSlideIndex += direction;
-    if (currentSlideIndex < 0) currentSlideIndex = currentSlideImages.length - 1;
-    if (currentSlideIndex >= currentSlideImages.length) currentSlideIndex = 0;
-
-    const img = document.getElementById('sliderImage');
-    const counter = document.getElementById('sliderCounter');
-
-    if (img) img.src = currentSlideImages[currentSlideIndex];
-    if (counter) counter.innerText = `${currentSlideIndex + 1} / ${currentSlideImages.length}`;
-}
+// function changeSlide(direction) { ... } - REMOVED (Inline slider is now static preview)
 
 function showPhilosophy() {
     const text = `<p>🏆 <strong>Наша философия</strong></p>
@@ -225,19 +261,23 @@ function showEquipment() {
 }
 
 function showCommunity() {
-    const text = `<p>🤝 <strong>Комьюнити и Атмосфера — здесь тренируются друзья</strong></p>
-    <p>Ты пришел за результатом, а останешься — за атмосферой. Наш зал создан не только для того, чтобы ставить рекорды, но и чтобы чувствовать себя частью команды, приходить с радостью и восстанавливаться с комфортом.
-Что делает наше пространство уникальным:
-Заряд для тебя и твоих девайсов: Пока ты на тренировке, твой телефон заряжается на нашей многофункциональной станции. Оставаться на связи — обязательно.
-Идеальный климат: Мощная система вентиляции обеспечивает свежий воздух, а на часах с температурой ты всегда видишь, что здесь комфортно и безопасно.
-Безупречная чистота: После тренировки тебя ждут чистые, ухоженные раздевалки и душевые. Это наш базовый стандарт.
-Точка притяжения — зона отдыха: Здесь все самое важное:
-Ароматный кофе из нашей кофемашины, чтобы взбодриться или продолжить общение.
-Умная колонка «Алиса», которая поставит твой плейлист.
-PlayStation и большой телевизор для жарких баталий или просмотра матчей.
-Мягкие кресла, где можно расслабиться, поболтать с друзьями или понаблюдать за тренировками.
-Безопасная и дружеская среда: Мы внимательно следим за атмосферой в зале. Здесь нет места токсичности. Только поддержка, мотивация и общие цели.
-Приходи не просто потренироваться — приходи стать частью нашего комьюнити. Здесь ты найдешь не только тренера, но и единомышленников.</p>`
+    const text = `<p>Ты пришел за результатом, а останешься — за атмосферой. Наш зал создан не только для того, чтобы ставить рекорды, но и чтобы чувствовать себя частью команды, приходить с радостью и восстанавливаться с комфортом.</p>
+    <p><strong>Что делает наше пространство уникальным:</strong></p>
+    <ul style="list-style: none; padding: 0; margin-bottom: 16px;">
+        <li style="margin-bottom: 8px;">• <strong>Заряд для тебя и твоих девайсов:</strong> Пока ты на тренировке, твой телефон заряжается на нашей многофункциональной станции. Оставаться на связи — обязательно.</li>
+        <li style="margin-bottom: 8px;">• <strong>Идеальный климат:</strong> Мощная система вентиляции обеспечивает свежий воздух, а на часах с температурой ты всегда видишь, что здесь комфортно и безопасно.</li>
+        <li style="margin-bottom: 8px;">• <strong>Безупречная чистота:</strong> После тренировки тебя ждут чистые, ухоженные раздевалки и душевые. Это наш базовый стандарт.</li>
+        <li style="margin-bottom: 8px;">• <strong>Точка притяжения — зона отдыха:</strong> Здесь все самое важное:
+            <ul style="list-style: none; padding-left: 20px; margin-top: 6px;">
+                 <li style="margin-bottom: 4px;">• Ароматный кофе из нашей кофемашины, чтобы взбодриться или продолжить общение.</li>
+                 <li style="margin-bottom: 4px;">• Умная колонка «Алиса», которая поставит твой плейлист.</li>
+                 <li style="margin-bottom: 4px;">• PlayStation и большой телевизор для жарких баталий или просмотра матчей.</li>
+                 <li style="margin-bottom: 4px;">• Мягкие кресла, где можно расслабиться, поболтать с друзьями или понаблюдать за тренировками.</li>
+            </ul>
+        </li>
+        <li style="margin-bottom: 8px;">• <strong>Безопасная и дружеская среда:</strong> Мы внимательно следим за атмосферой в зале. Здесь нет места токсичности. Только поддержка, мотивация и общие цели.</li>
+    </ul>
+    <p>Приходи не просто потренироваться — приходи стать частью нашего комьюнити. Здесь ты найдешь не только тренера, но и единомышленников.</p>`
     const images = (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA.community) ? GALLERY_DATA.community : ['images/schedule.png'];
     showBotResponse('community', text, images, '', 'slider');
 }
