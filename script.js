@@ -165,12 +165,12 @@ function hideBotResponse() {
     // Add hiding class to trigger animation
     responseArea.classList.add('hiding');
 
-    // Wait for animation to finish (match CSS duration 0.4s)
+    // Wait for animation to finish (match CSS duration 0.3s)
     setTimeout(() => {
         responseArea.style.display = 'none';
         responseArea.classList.remove('hiding');
         activeResponseId = null;
-    }, 400);
+    }, 300);
 
     if (tg.HapticFeedback) {
         tg.HapticFeedback.impactOccurred('light');
@@ -269,51 +269,95 @@ function showBotResponse(id, text, media = [], buttonHtml = '', mediaType = 'ima
     }
 }
 
-// function changeSlide(direction) { ... } - REMOVED (Inline slider is now static preview)
-
 function showPhilosophy() {
-    const text = `<p>🏆 <strong>Наша философия</strong></p>
-    <p>Мы создаем сообщество, где каждый, от новичка до профессионала, находит свой путь к здоровью и уверенности. Ваш результат
-наша общая цель!</p>`
+    const text = `<h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; color: var(--color-text);">
+        <i class="fa-solid fa-crown" style="color: var(--color-primary);"></i> Наша философия
+    </h3>
+    <p style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 0;">Мы создаем сообщество, где каждый, от новичка до профессионала, находит свой путь к здоровью и уверенности. Ваш результат
+наша общая цель!</p>`;
     const video = ['images/video/приветствие.mp4'];
     showBotResponse('philosophy', text, video, '', 'video');
 }
 
 function showTopTrainers() {
-    const text = `<p>🏅 <strong>Топовые тренеры</strong></p>
-    <p>Все наши тренеры — сертифицированные профессионалы с победным опытом в спорте и более 5 лет практики. Мы растем вместе с вами!</p>`;
-    const buttonHtml = '<button class="btn btn-primary" onclick="switchTab(\'trainers\')"><i class="fa-solid fa-users"></i> Посмотреть всех тренеров</button>';
+    const text = `<h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; color: var(--color-text);">
+        <i class="fa-solid fa-star" style="color: var(--color-primary);"></i> Топовые тренеры
+    </h3>
+    <p style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Все наши тренеры — сертифицированные профессионалы с победным опытом в спорте и более 5 лет практики. Мы растем вместе с вами!</p>`;
+    const buttonHtml = '<button class="btn btn-primary" onclick="switchTab(\'trainers\')" style="font-family: var(--font-heading);"><i class="fa-solid fa-users"></i> Посмотреть всех тренеров</button>';
     showBotResponse('trainers', text, [], buttonHtml);
 }
 
 function showEquipment() {
-    const text = `<p>💎 <strong>Оснащение зала</strong></p>
-    <p>Тренируйтесь на профессиональном оборудовании.</p>`
-    // Use GALLERY_DATA.equipment if available
-    const images = (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA.equipment) ? GALLERY_DATA.equipment : ['images/services.png'];
-    showBotResponse('equipment', text, images, '', 'slider');
+    const text = `<h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; color: var(--color-text);">
+        <i class="fa-solid fa-chart-pie" style="color: var(--color-primary);"></i> Зал в цифрах
+    </h3>
+    <p style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">Наш тренажерный зал укомплектован современным оборудованием для достижения любых спортивных целей. Мы создали идеальные условия для эффективных и комфортных тренировок.</p>
+    <div class="hide-scrollbar" style="display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 2px; -webkit-overflow-scrolling: touch;">
+        <div class="card" style="margin-bottom: 0; padding: 20px 16px; text-align: center; flex: 0 0 140px; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <i class="fa-solid fa-dumbbell" style="font-size: 28px; color: var(--color-primary); margin-bottom: 12px; filter: drop-shadow(0 0 8px var(--color-primary-glow));"></i>
+            <div style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--color-text);">50+</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Тренажеров</div>
+        </div>
+        <div class="card" style="margin-bottom: 0; padding: 20px 16px; text-align: center; flex: 0 0 140px; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <i class="fa-solid fa-weight-hanging" style="font-size: 28px; color: var(--color-primary); margin-bottom: 12px; filter: drop-shadow(0 0 8px var(--color-primary-glow));"></i>
+            <div style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--color-text);">1000 кг</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Свободный вес</div>
+        </div>
+        <div class="card" style="margin-bottom: 0; padding: 20px 16px; text-align: center; flex: 0 0 140px; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <i class="fa-solid fa-person-running" style="font-size: 28px; color: var(--color-primary); margin-bottom: 12px; filter: drop-shadow(0 0 8px var(--color-primary-glow));"></i>
+            <div style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--color-text);">100 м²</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Зона кроссфита</div>
+        </div>
+        <div class="card" style="margin-bottom: 0; padding: 20px 16px; text-align: center; flex: 0 0 140px; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <i class="fa-solid fa-temperature-arrow-down" style="font-size: 28px; color: var(--color-primary); margin-bottom: 12px; filter: drop-shadow(0 0 8px var(--color-primary-glow));"></i>
+            <div style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; margin-bottom: 4px; color: var(--color-text);">22°C</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Климат-контроль</div>
+        </div>
+    </div>`;
+    showBotResponse('equipment', text, [], '');
 }
 
 function showCommunity() {
-    const text = `<p>🤝🌍🚀🤜🤛 Ты пришел за результатом, а останешься — за атмосферой. Наш зал создан не только для того, чтобы ставить рекорды, но и чтобы чувствовать себя частью команды, приходить с радостью и восстанавливаться с комфортом.</p>
-    <p><strong>Что делает наше пространство уникальным:</strong></p>
-    <ul style="list-style: none; padding: 0; margin-bottom: 16px;">
-        <li style="margin-bottom: 8px;">• <strong>Заряд для тебя и твоих девайсов:</strong> Пока ты на тренировке, твой телефон заряжается на нашей многофункциональной станции. Оставаться на связи — обязательно.</li>
-        <li style="margin-bottom: 8px;">• <strong>Идеальный климат:</strong> Мощная система вентиляции обеспечивает свежий воздух, а на часах с температурой ты всегда видишь, что здесь комфортно и безопасно.</li>
-        <li style="margin-bottom: 8px;">• <strong>Безупречная чистота:</strong> После тренировки тебя ждут чистые, ухоженные раздевалки и душевые. Это наш базовый стандарт.</li>
-        <li style="margin-bottom: 8px;">• <strong>Точка притяжения — зона отдыха:</strong> Здесь все самое важное:
-            <ul style="list-style: none; padding-left: 20px; margin-top: 6px;">
-                 <li style="margin-bottom: 4px;">• Ароматный кофе из нашей кофемашины, чтобы взбодриться или продолжить общение.</li>
-                 <li style="margin-bottom: 4px;">• Умная колонка «Алиса», которая поставит твой плейлист.</li>
-                 <li style="margin-bottom: 4px;">• PlayStation и большой телевизор для жарких баталий или просмотра матчей.</li>
-                 <li style="margin-bottom: 4px;">• Мягкие кресла, где можно расслабиться, поболтать с друзьями или понаблюдать за тренировками.</li>
-            </ul>
-        </li>
-        <li style="margin-bottom: 8px;">• <strong>Безопасная и дружеская среда:</strong> Мы внимательно следим за атмосферой в зале. Здесь нет места токсичности. Только поддержка, мотивация и общие цели.</li>
-    </ul>
-    <p>Приходи не просто потренироваться — приходи стать частью нашего комьюнити. Здесь ты найдешь не только тренера, но и единомышленников.</p>`
-    const images = (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA.community) ? GALLERY_DATA.community : ['images/schedule.png'];
-    showBotResponse('community', text, images, '', 'slider');
+    const text = `<h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; color: var(--color-text);">
+        <i class="fa-solid fa-mug-hot" style="color: var(--color-primary);"></i> Наш быт и комфорт
+    </h3>
+    <p style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; line-height: 1.5;">Продумана каждая мелочь, чтобы тебе было комфортно.</p>
+    
+    <div class="hide-scrollbar" style="display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 2px; -webkit-overflow-scrolling: touch;">
+        <div class="card" style="margin-bottom: 0; padding: 24px 16px; text-align: center; flex: 0 0 160px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.1); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 24px; margin-bottom: 16px; box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);">
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text);">Зона с PS4</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-text-muted); line-height: 1.4;">Расслабься после жесткой тренировки</div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 0; padding: 24px 16px; text-align: center; flex: 0 0 160px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.1); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 24px; margin-bottom: 16px; box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);">
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text);">Зарядки</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-text-muted); line-height: 1.4;">Твои девайсы всегда на связи</div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 0; padding: 24px 16px; text-align: center; flex: 0 0 160px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.1); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 24px; margin-bottom: 16px; box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text);">Алиса</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-text-muted); line-height: 1.4;">Умная колонка с твоими треками</div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 0; padding: 24px 16px; text-align: center; flex: 0 0 160px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(249, 115, 22, 0.1); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 24px; margin-bottom: 16px; box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);">
+                <i class="fa-solid fa-shower"></i>
+            </div>
+            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 16px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text);">Душевые</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-text-muted); line-height: 1.4;">Безупречная чистота — наш стандарт</div>
+        </div>
+    </div>`;
+    showBotResponse('community', text, [], '');
 }
 
 function makeCall(phoneNumber) {

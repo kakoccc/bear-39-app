@@ -121,13 +121,14 @@ h4,
 .header {
     display: flex;
     align-items: center;
+    margin-top: 10px;
     margin-bottom: 32px;
     gap: 16px;
 }
 
 .logo-container {
-    width: 100px;
-    height: 100px;
+    width: clamp(70px, 20vw, 100px);
+    height: clamp(70px, 20vw, 100px);
     flex-shrink: 0;
 }
 
@@ -139,17 +140,17 @@ h4,
 }
 
 .brand {
-    font-size: 35px;
+    font-size: clamp(20px, 7vw, 35px);
     font-weight: 900;
     font-style: italic;
     letter-spacing: -0.5px;
-    line-height: 1;
+    line-height: 1.05;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .brand span {
     color: var(--color-primary);
-    font-size: 35px;
+    font-size: clamp(20px, 7vw, 35px);
     text-shadow: 0 0 15px var(--color-primary-glow);
 }
 
@@ -371,7 +372,7 @@ h4,
     justify-content: center;
     gap: 12px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     color: var(--color-text);
     font-family: var(--font-heading);
     position: relative;
@@ -381,20 +382,22 @@ h4,
 }
 
 /* Hover Effect */
-.why-us-btn:hover {
-    background: var(--color-surface-hover);
-    transform: translateY(-4px) scale(1.02);
-    /* Neon Glow Intensification */
-    box-shadow:
-        0 0 50px var(--color-primary-glow),
-        0 0 100px rgba(249, 115, 22, 0.1) inset;
-    border-color: #ff9f43;
+@media (hover: hover) {
+    .why-us-btn:hover {
+        background: var(--color-surface-hover);
+        /* Neon Glow Intensification without jumping */
+        box-shadow:
+            0 0 30px var(--color-primary-glow),
+            0 0 60px rgba(249, 115, 22, 0.1) inset;
+        border-color: #ff9f43;
+    }
 }
 
-/* Active Click Effect */
+/* Active Click Effect - smooth max depth */
 .why-us-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px var(--color-primary-glow);
+    transform: scale(0.96);
+    box-shadow: 0 0 15px var(--color-primary-glow);
+    background: var(--color-surface);
 }
 
 /* Pulse Animation for Border/Glow */
@@ -429,10 +432,12 @@ h4,
     transition: all 0.3s;
 }
 
-.why-us-btn:hover i {
-    transform: scale(1.1);
-    color: #fff;
-    filter: drop-shadow(0 0 10px var(--color-primary));
+@media (hover: hover) {
+    .why-us-btn:hover i {
+        transform: scale(1.1);
+        color: #fff;
+        filter: drop-shadow(0 0 10px var(--color-primary));
+    }
 }
 
 .why-us-btn span {
@@ -487,13 +492,14 @@ h4,
 
 .trainer-img {
     width: 100%;
-    height: 320px;
+    height: 380px;
     object-fit: cover;
+    object-position: center;
     background-color: #1a1a1a;
 }
 
 .trainer-info {
-    padding: 20px;
+    padding: 12px 12px 16px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -588,57 +594,38 @@ h4,
 }
 
 /* Bot Response Area */
-.bot-response {
-    margin-top: 20px;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
+@keyframes botFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(15px) scale(0.98);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
-@keyframes fadeOut {
+@keyframes botFadeOut {
     from {
         opacity: 1;
-        transform: translateY(0);
-        max-height: 1000px;
-        /* Arbitrary large height */
-        margin-top: 20px;
-        padding: 20px;
-        border-width: 1px;
+        transform: translateY(0) scale(1);
     }
 
     to {
         opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-        margin-top: 0;
-        padding: 0;
-        border-width: 0;
+        transform: translateY(15px) scale(0.98);
     }
 }
 
 .bot-response {
-    overflow: hidden;
-    /* Needed for height animation */
-    transition: max-height 0.3s ease-out;
+    margin-top: 20px;
+    animation: botFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: top center;
 }
 
 .bot-response.hiding {
-    animation: fadeOut 0.4s ease-in forwards;
-}
-
-.bot-response {
-    margin-top: 20px;
-    animation: fadeIn 0.3s ease-out;
+    animation: botFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .bot-message {
@@ -663,6 +650,11 @@ h4,
     margin-top: 16px;
 }
 
+.response-images:empty {
+    display: none;
+    margin-top: 0;
+}
+
 .response-images img {
     width: 100%;
     height: 140px;
@@ -679,6 +671,23 @@ h4,
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#responseButton:empty {
+    display: none;
+    margin-top: 0;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none !important;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Slider Styles */
@@ -771,5 +780,83 @@ h4,
         width: 50px;
         height: 50px;
         background: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Оптимизация под мобильные устройства и узкие экраны */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 15px;
+        padding-bottom: calc(var(--nav-height) + 15px);
+    }
+
+    .header {
+        margin-bottom: 24px;
+        gap: 12px;
+    }
+
+    .why-us-buttons {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .why-us-btn {
+        padding: 16px 8px;
+        gap: 8px;
+    }
+
+    .why-us-btn i {
+        font-size: 26px;
+    }
+
+    .why-us-btn span {
+        font-size: 11px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .bot-message {
+        padding: 16px;
+    }
+
+    .response-images {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
+    }
+
+    .trainer-card {
+        flex: 0 0 92vw;
+    }
+
+    .trainer-actions .btn {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+
+    .nav-item {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .nav-item i {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+
+    .qr-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+
+    .map-container {
+        height: 200px;
     }
 }
